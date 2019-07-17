@@ -1,0 +1,2 @@
+$share = Get-ChildItem '<path>' -Recurse | Where { $_.PsIsContainer -eq $true }
+$share | Where { $_.GetFiles().Count -eq 0 -and $_.GetDirectories().Count -eq 0 } | Remove-Item -Include "New Folder*" -ErrorAction SilentlyContinue
