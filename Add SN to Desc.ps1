@@ -1,6 +1,9 @@
 ﻿<#
-Script to retrieve serial number and add it to the description of the computer running. this is to be set to run at logon for
-all computers. 
+Script to retrieve serial number and add it to the description of
+the computer running. this is to be set to run at logon for all
+computers. 
+This script needs an AD group with all computers that you wish to
+run this on called SerialNumber.
 #>
 
 Import-Module ActiveDirectory #This is to add cmdlets required for script
