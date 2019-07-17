@@ -1,2 +1,2 @@
 # PSTools
-Automation tools for Powershell
+Automation tools for powershell that I have built whilst learning to use powershell.
