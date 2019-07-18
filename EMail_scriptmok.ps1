@@ -10,7 +10,7 @@ $username = "<userName>" # Set username for mailserver
 $password = Get-Content 'C:\mysecurestring.txt' | ConvertTo-SecureString # Import the secured password
 $cred = new-object -typename System.Management.Automation.PSCredential `
          -argumentlist $username, $password
-$subja | Hostname
+$subja = Hostname
 $subj = 'Automated message:', $subja, ' - Back Online!'
 $body = 'Automated message:', $subja, ' has completed the scheduled reboot, and is now back online.'
     Send-MailMessage -smtpServer smtp.office365.com -Port 587 `
