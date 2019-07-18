@@ -5,9 +5,9 @@ this generates your password as a secure string for
 use in this script.
 #>
 
-
-$username = "<userName>"
-$password = Get-Content 'C:\mysecurestring.txt' | ConvertTo-SecureString
+[System.Net.ServicePointManager]::SecurityProtocol = 'TLS12' # Force use of TLS 1.2 encryption
+$username = "<userName>" # Set username for mailserver
+$password = Get-Content 'C:\mysecurestring.txt' | ConvertTo-SecureString # Import the secured password
 $cred = new-object -typename System.Management.Automation.PSCredential `
          -argumentlist $username, $password
 $subja | Hostname
