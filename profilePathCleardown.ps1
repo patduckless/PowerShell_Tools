@@ -1,4 +1,4 @@
-﻿<#
+<#
 Scope: This script is to remove the 'Profile Path' folder for any account that is removed from Active directory.
 It will first delete the ones itentified on the previous run as being removed from AD.
 Then it will remove the old version of the deletion CSV. 
