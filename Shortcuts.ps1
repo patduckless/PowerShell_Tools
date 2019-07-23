@@ -1,2 +1,3 @@
-$share = Get-ChildItem '<filePath>' -Recurse | Where { $_.PsIsContainer -eq $False }
-$share |  Remove-Item -Include "*.lnk" -ErrorAction SilentlyContinue -WhatIf
+$path = '\\?\<filePath>'
+$share = Get-ChildItem -LiteralPath $path -Recurse -Filter "*.lnk" | Where { $_.PsIsContainer -eq $False }
+$share |  Remove-Item -ErrorAction SilentlyContinue -WhatIf
