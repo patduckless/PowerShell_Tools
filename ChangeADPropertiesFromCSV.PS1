@@ -1,11 +1,20 @@
-﻿$Book  = Import-Csv -Path .\Book2.csv #import list of users an properties change to your file name and path. 
-$Book
-foreach($user in $Book) {
-#create one of the below for each property you wish to update. 
-#Don't forget to add it to the set-ADUser command below
-$name = $user.("Name")
-$number = $user.("MobilePhone")
+$csv  = Import-Csv -Path .\<list>.csv #import list of users an properties. change to your file name and path. 
+$csv
+foreach($user in $csv) {
 
-get-ADUser -filter {Name -like $name} | Set-ADUser -MobilePhone "$number"
-get-ADUser -filter {Name -like $name} -Properties * #Return the user profile to confirm update.
+#Create one of the below for each property you wish to update. 
+
+$name = $user.("Name")
+$number = $user.("Number")
+
+$ADUser = get-ADUser -filter {Name -like $name} -Properties * #Get the User account
+
+#Set the properties you wish to change shere in teh format $ADUser.<property you wish to change>
+$ADUser.MobilePhone = $number
+
+Set-ADUser -Instance $ADUser
+
+$ADUser = get-ADUser -filter {Name -like $name} -Properties MobilePhone
+
+Out-host -InputObject $ADUser #Return the user profile to confirm update.
 }
