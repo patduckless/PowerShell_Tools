@@ -1,6 +1,5 @@
 ﻿$loc = Get-Location
 $UserName = $env:UserName
-table -HideTableHeaders | Out-String
 cd HKLM:\
 cd "SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList"
 ls | ForEach-Object{ $Profile=$_.GetValue('ProfileImagePath')
