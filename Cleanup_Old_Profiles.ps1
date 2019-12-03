@@ -1,4 +1,5 @@
-﻿$loc = Get-Location
+#Scope: A Script to automate the removal of user profiles from the registry and file structure of devices to be redeployed. 
+$loc = Get-Location
 $UserName = $env:UserName
 cd HKLM:\
 cd "SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList"
