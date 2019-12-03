@@ -10,7 +10,8 @@ Remove-Item $_.PSPath -Recurse -ErrorAction SilentlyContinue
 cd C:\
 Remove-Item $Profile -Recurse -ErrorAction SilentlyContinue
 cd HKLM:\
- }else{ 
+ }
+ else{ 
  Write-Host "Skipping $Profile" 
  }
 }
