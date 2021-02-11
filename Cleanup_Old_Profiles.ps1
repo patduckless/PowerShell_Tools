@@ -1,18 +1,28 @@
-#Scope: A Script to automate the removal of user profiles from the registry and file structure of devices to be redeployed. 
-$loc = Get-Location
+<#
+Removes local profiles other than running user and service accounts. 
+
+Version: 2.2
+#>
+
 $UserName = $env:UserName
-cd HKLM:\
-cd "SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList"
-ls | ForEach-Object{ $Profile=$_.GetValue('ProfileImagePath')
-if ($profile -notmatch "administrator|Ctx_StreamingSvc|NetworkService|Localservice|systemprofile|$Username"){
-Write-Host "$Profile removed"
-Remove-Item $_.PSPath -Recurse -ErrorAction SilentlyContinue
-cd C:\
-Remove-Item $Profile -Recurse -ErrorAction SilentlyContinue
-cd HKLM:\
- }
- else{ 
- Write-Host "Skipping $Profile" 
- }
+$keeplist = "administrator|IT Support|Ctx_StreamingSvc|NetworkService|Localservice|systemprofile|$Username|SYSTEM"
+$date = (Get-Date).AddDays(-182.5)
+
+$localProfiles = Get-CimInstance -Class Win32_UserProfile 
+
+foreach ($Profile in $localProfiles) {
+    $name = $Profile.LocalPath.split('\')[-1]
+    if ((Get-Item $Profile.LocalPath).LastWriteTime -gt $date) {
+        Write-Host "Skipping: $name"
+        Continue
+    }
+    if ($name -notmatch $keeplist){
+        
+        Write-Host "`n`nRemoving: $name" -ForegroundColor Yellow
+        Get-CimInstance $profile | Remove-CimInstance -Confirm
+    }
+    else{ 
+        Write-Host "Skipping: $name" 
+    }
 }
-cd $loc
+if (!($psISE)){"Press any key to continue...";[void][System.Console]::ReadKey($true)}
