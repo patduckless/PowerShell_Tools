@@ -1,0 +1,2 @@
+$ukUsers = Get-EXOMailbox -Filter "UsageLocation -eq 'United Kingdom'"
+foreach($user in $ukUsers){out-host -InputObject $user.UserPrincipalName; Remove-CalendarEvents -Identity $user.UserPrincipalName -CancelOrganizedMeetings -QueryWindowInDays 365 -Confirm:$false; Remove-CalendarEvents -Identity $user.UserPrincipalName -QueryWindowInDays 365 -Confirm:$false}

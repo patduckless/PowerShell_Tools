@@ -1,0 +1,1 @@
+Get-RDUserSession | Where-Object {$_.SessionState -eq "STATE_DISCONNECTED"} | Invoke-RDUserLogoff -Force

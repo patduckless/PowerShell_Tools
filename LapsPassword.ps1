@@ -1,0 +1,1 @@
+﻿get-adcomputer -Filter * -Properties * -SearchBase "OU=Computers,OU=DM,DC=Domain,DC=local" | select @{Label="Name";Expression={$_.name}}, @{Label="OS";Expression={$_.operatingsystem}}, @{Label="Distinguished name";Expression={$_.'distinguishedname'}}, @{Label="Password";Expression={$_.'ms-Mcs-AdmPwd'}} | Export-Excel -Path ".\laps.xlsx" -FreezeTopRow -AutoSize

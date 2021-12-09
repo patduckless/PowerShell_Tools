@@ -1,3 +1,6 @@
+## deprecated as pswindowsupdate module exisits
+
+
 Function Invoke-RemoteUpdate{
 
 #A command to scan for and install Windows updates on a remote system. 

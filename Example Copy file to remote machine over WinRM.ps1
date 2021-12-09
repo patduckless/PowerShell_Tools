@@ -1,0 +1,1 @@
+Copy-Item –Path C:\IT\LocalOffice.zip –Destination 'C:\IT' –ToSession (New-PSSession –ComputerName $A.Name -Credential $me)
